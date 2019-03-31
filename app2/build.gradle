@@ -23,7 +23,7 @@ ospackage {
 
 	requires('qux')
 
-	into '/opt/foo'
+	into '/opt/app2'
 
 //	from(jar.outputs.files) {
 //		into 'lib'
@@ -55,9 +55,9 @@ println "DEBUG: ${OUTPUT_DIR}/module/${project.name}/RPMS"
 
 buildRpm {
 
-	packageName = 'app1'
-	version = '1.2.3'
-	release = '1'
+	packageName = 'app2'
+	version = '3.0.11'
+	release = '376'
 	arch = I386
 	os = LINUX
 
@@ -65,6 +65,6 @@ buildRpm {
 	destinationDir = project.file(OUTPUT_DIR + "/module/${project.name}/RPMS")
 	destinationDir.mkdirs()
 
-	link('/etc/init.d/foo', '/opt/foo/bin/foo.init')
+	link('/etc/init.d/app2', '/opt/foo/bin/foo.init')
 }
 

@@ -33,3 +33,23 @@ subprojects {
 	apply plugin: "nebula.ospackage"
 	makeRpm.dependsOn(buildRpm)
 }
+
+apply plugin: org.packaging.plugin.GreetingPlugin
+
+// Greeting
+greetingData {
+	message = 'Hi'
+	greeter = 'Planet earth'
+}
+
+ext.greetingFile = "$buildDir/hello.txt"
+
+task greet(type: org.packaging.plugin.GreetingToFileTask) {
+	destination = { project.greetingFile }
+}
+
+task sayGreeting(dependsOn: greet) {
+	doLast {
+		println file(project.greetingFile).text
+	}
+}

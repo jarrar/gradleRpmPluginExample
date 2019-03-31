@@ -12,3 +12,9 @@ This is supposed to be an example for building RPM with gradle.
 ```bash
 ./gradlew makeRpm
 ```
+
+## Run greeting
+
+```bash
+./gradlew sayGreeting
+```

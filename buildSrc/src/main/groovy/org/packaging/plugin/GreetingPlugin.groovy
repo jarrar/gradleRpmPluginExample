@@ -8,13 +8,8 @@ class GreetingPlugin implements Plugin<Project> {
         def extension = project.extensions.create('greetingData', GreetingPluginExtension)
         project.task('hello') {
             doLast {
-                println "${extension.message} from ${extension.greeter}"
+                println ">>>> ${extension.message} from ${extension.greeter}"
             }
         }
     }
 }
-
-
-
-
-

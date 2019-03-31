@@ -15,6 +15,6 @@ class GreetingToFileTask extends DefaultTask {
 	def greet() {
 		def file = getDestination()
 		file.parentFile.mkdirs()
-		file.write 'Hello! Boy'
+		file.write 'Hello! Earth'
 	}
 }

@@ -23,6 +23,7 @@ ext {
 
 allprojects {
 	task makeRpm {
+
 		doLast { task ->
 			println "I'm $task.project.name"
 		}
@@ -31,7 +32,7 @@ allprojects {
 
 subprojects {
 	apply plugin: "nebula.ospackage"
-	makeRpm.dependsOn(buildRpm)
+	makeRpm.dependsOn(['buildDevelRpm', 'buildRuntimeRpm'])
 }
 
 apply plugin: org.packaging.plugin.GreetingPlugin

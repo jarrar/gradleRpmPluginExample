@@ -13,30 +13,43 @@ makeRpm {
 }
 
 
-ospackage {
+//ospackage {
+//
+////	installUtils file('scripts/rpm/utils.sh')
+////	preInstall file('scripts/rpm/preInstall.sh')
+////	postInstall file('scripts/rpm/postInstall.sh')
+////	preUninstall 'touch /tmp/myfile'
+////	postUninstall file('scripts/rpm/postUninstall.sh')
+//
+//	requires('qux')
+//
+//	into '/opt/foo'
+//
+////	from(jar.outputs.files) {
+////		into 'lib'
+////	}
+////	from(configurations.runtime) {
+////		into 'lib'
+////	}
+//
+//	from('scripts') {
+//		into 'bin'
+//		exclude 'database'
+//		fileMode = 0550
+//	}
+//}
 
-//	installUtils file('scripts/rpm/utils.sh')
-//	preInstall file('scripts/rpm/preInstall.sh')
-//	postInstall file('scripts/rpm/postInstall.sh')
-//	preUninstall 'touch /tmp/myfile'
-//	postUninstall file('scripts/rpm/postUninstall.sh')
+println "DEBUG: ${OUTPUT_DIR}/module/${project.name}/RPMS"
 
-	requires('qux')
+task buildRuntimeRpm(type: Rpm) {
+
+	packageName = 'app1-runtime'
+	version = '1.2.3'
+	release = '1'
+	arch = I386
+	os = LINUX
 
 	into '/opt/foo'
-
-//	from(jar.outputs.files) {
-//		into 'lib'
-//	}
-//	from(configurations.runtime) {
-//		into 'lib'
-//	}
-
-	from('scripts') {
-		into 'bin'
-		exclude 'database'
-		fileMode = 0550
-	}
 
 	from('conf') {
 		// Will tell redline-rpm not to auto create directories, which
@@ -49,18 +62,11 @@ ospackage {
 		into 'data'
 	}
 
-}
-
-println "DEBUG: ${OUTPUT_DIR}/module/${project.name}/RPMS"
-
-buildRpm {
-
-	packageName = 'app1'
-	version = '1.2.3'
-	release = '1'
-	arch = I386
-	os = LINUX
-
+	from('scripts') {
+		into 'bin'
+		exclude 'database'
+		fileMode = 0550
+	}
 
 	destinationDir = project.file(OUTPUT_DIR + "/module/${project.name}/RPMS")
 	destinationDir.mkdirs()
@@ -68,3 +74,24 @@ buildRpm {
 	link('/etc/init.d/foo', '/opt/foo/bin/foo.init')
 }
 
+task buildDevelRpm(type: Rpm) {
+
+	packageName = 'app1-devel'
+	version = '1.33.99'
+	release = '189'
+	arch = I386
+	os = LINUX
+
+	from('lib') {
+		into '/usr/local/lib'
+	}
+
+	from('header') {
+		into '/usr/local/include'
+	}
+
+	destinationDir = project.file(OUTPUT_DIR + "/module/${project.name}/RPMS")
+	destinationDir.mkdirs()
+
+	link('/etc/init.d/foo', '/opt/foo/bin/foo.init')
+}

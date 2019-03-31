@@ -9,6 +9,8 @@ This is supposed to be an example for building RPM with gradle.
 
 ## How to build
 
+to build RPMs of both apps
+
 ```bash
 ./gradlew makeRpm
 ```

@@ -12,9 +12,9 @@ makeRpm {
 
 }
 
-greetingData {
+RpmExtension {
 	message = 'Greetings users of the  '
-	greeter = 'APP2'
+	greeter = 'APP2 using RPM pkg'
 }
 
 

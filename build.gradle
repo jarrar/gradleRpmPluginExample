@@ -32,16 +32,16 @@ allprojects {
 
 subprojects {
 	apply plugin: "nebula.ospackage"
-	apply plugin: org.packaging.plugin.GreetingPlugin
+	apply plugin: org.packaging.plugin.RpmPackagePlugin
 	makeRpm.dependsOn(['buildDevelRpm', 'buildRuntimeRpm'])
 }
 
-apply plugin: org.packaging.plugin.GreetingPlugin
+apply plugin: org.packaging.plugin.RpmPackagePlugin
 // Greeting
 
 ext.greetingFile = "$buildDir/hello.txt"
 
-task greet(type: org.packaging.plugin.GreetingToFileTask) {
+task greet(type: org.packaging.plugin.RpmPackageTask) {
 	destination = { project.greetingFile }
 }
 

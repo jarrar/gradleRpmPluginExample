@@ -12,9 +12,9 @@ makeRpm {
 
 }
 
-greetingData {
+RpmExtension {
 	message = 'Greetings users of the '
-	greeter = 'APP1'
+	greeter = 'APP1 using RPM pkg'
 }
 
 println "DEBUG: ${OUTPUT_DIR}/module/${project.name}/RPMS"

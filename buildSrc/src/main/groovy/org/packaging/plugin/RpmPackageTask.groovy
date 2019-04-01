@@ -3,7 +3,11 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
 
-class GreetingToFileTask extends DefaultTask {
+/**
+ *
+ */
+
+class RpmPackageTask extends DefaultTask {
 
 	def destination
 

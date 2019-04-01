@@ -1,6 +1,6 @@
 package org.packaging.plugin
 
-class GreetingPluginExtension {
+class RpmExtension {
     String message
     String greeter
 }

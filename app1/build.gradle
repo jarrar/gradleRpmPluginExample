@@ -12,32 +12,10 @@ makeRpm {
 
 }
 
-
-//ospackage {
-//
-////	installUtils file('scripts/rpm/utils.sh')
-////	preInstall file('scripts/rpm/preInstall.sh')
-////	postInstall file('scripts/rpm/postInstall.sh')
-////	preUninstall 'touch /tmp/myfile'
-////	postUninstall file('scripts/rpm/postUninstall.sh')
-//
-//	requires('qux')
-//
-//	into '/opt/foo'
-//
-////	from(jar.outputs.files) {
-////		into 'lib'
-////	}
-////	from(configurations.runtime) {
-////		into 'lib'
-////	}
-//
-//	from('scripts') {
-//		into 'bin'
-//		exclude 'database'
-//		fileMode = 0550
-//	}
-//}
+greetingData {
+	message = 'Greetings users of the '
+	greeter = 'APP1'
+}
 
 println "DEBUG: ${OUTPUT_DIR}/module/${project.name}/RPMS"
 

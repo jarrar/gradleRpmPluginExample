@@ -12,6 +12,12 @@ makeRpm {
 
 }
 
+greetingData {
+	message = 'Greetings users of the  '
+	greeter = 'APP2'
+}
+
+
 println "DEBUG: ${OUTPUT_DIR}/module/${project.name}/RPMS"
 
 task buildRuntimeRpm(type: Rpm) {

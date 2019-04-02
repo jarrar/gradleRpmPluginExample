@@ -41,11 +41,12 @@ apply plugin: org.packaging.plugin.RpmPackagePlugin
 
 ext.greetingFile = "$buildDir/hello.txt"
 
+println "buildDir: ${buildDir}"
 task greet(type: org.packaging.plugin.RpmPackageTask) {
 	destination = { project.greetingFile }
 }
 
-task sayGreeting(dependsOn: hello) {
+task sayGreeting(dependsOn: greet) {
 	doLast {
 		println file(project.greetingFile).text
 	}
